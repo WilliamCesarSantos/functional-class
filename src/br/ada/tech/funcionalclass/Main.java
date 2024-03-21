@@ -3,6 +3,7 @@ package br.ada.tech.funcionalclass;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class Main {
@@ -14,7 +15,7 @@ public class Main {
         Function<String, BigDecimal> bigDecimalConverter = (value) -> new BigDecimal(value);
         Function<String, String> noConverter = (value) -> value;
 
-         InputData<LocalDate> data = new InputData<>("Informe uma data(dd/MM/yyyy)", dateConverter);
+        InputData<LocalDate> data = new InputData<>("Informe uma data(dd/MM/yyyy)", dateConverter);
         var value = data.capture();
         System.out.println(value);
 
@@ -25,5 +26,9 @@ public class Main {
         InputData<String> dataText = new InputData<>("Informe o seu nome:", noConverter);
         var name = dataText.capture();
         System.out.println(name);
+
+        BiFunction<BigDecimal, BigDecimal, String> soma = (first, second) -> first.add(second).toString();
+        TriFunction<BigDecimal, BigDecimal, BigDecimal, String> somaTudo =
+                (first, second, third) -> first.add(second).add(third).toString();
     }
 }
