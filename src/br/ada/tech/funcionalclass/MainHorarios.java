@@ -1,9 +1,11 @@
 package br.ada.tech.funcionalclass;
 
+import java.math.BigDecimal;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class MainHorarios {
@@ -16,7 +18,7 @@ public class MainHorarios {
             registroPontos.add(new RegistroPonto(
                             LocalDateTime.now().minusHours(horas),
                             LocalDateTime.now(),
-                            "Index: " + index
+                            "Index:" + index
                     )
             );
         }
@@ -34,8 +36,8 @@ public class MainHorarios {
         // Caso tenha excedido imprima na tela o valor: $nome, você ganhou um dia de folga.
         registroPontos.stream()
                 .filter(ponto -> Duration.between(ponto.entrada(), ponto.saida()).toHours() > 8)
+                .map(ponto -> ponto.nome() + ", você ganhou um dia de folga!")
                 .forEach(System.out::println);
-
         /*
         registroPontos.forEach(new Consumer<RegistroPonto>() {
             @Override

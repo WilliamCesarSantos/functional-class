@@ -1,5 +1,7 @@
 package br.ada.tech.funcionalclass;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class MainNumeroPar {
@@ -11,8 +13,8 @@ public class MainNumeroPar {
                 valorCorrente -> valorCorrente <= 100,//condicional
                 valorCorrente -> valorCorrente + 1//Incremento
         );
-        numeros.filter(numero -> numero % 2 == 0)
+        List<String> numerosPares = numeros.filter(numero -> numero % 2 == 0)
                 .map(numero -> numero + " é par")
-                .forEach(System.out::println);
+                .collect(Collectors.toList());
     }
 }
